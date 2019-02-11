@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Tyler Huynh">
+	<title>Neighborhood Map</title>
+    <link rel="icon" href="images/favicon.ico">
+	<link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+        <div id="wrapper">
+            <div id="sidebar-wrapper">
+                <div class="input-group">
+                    <input class="form-control" placeholder="Search Location" type="text" data-bind="value: filter, valueUpdate: 'afterkeydown'">
+                    <span class="input-group-btn">
+						<button class="btn btn-primary" type="button">
+							<i class="fa fa-filter"></i>
+							Filter
+						</button>
+					</span>
+                </div>
+                <ul class="sidebar-nav" data-bind="foreach: filteredPlaces" style="margin-top: 60px;">
+                    <li><a href="#" data-bind="text: name" onclick="clickedMarker(this.innerHTML);"></a></li>
+                </ul>
+            </div>
+            <div id="menu">
+                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">
+                    <i class="fa fa-bars fa-2x"></i>
+                </a>
+            </div>
+        </div>
+        <div id="map"></div>
+	</div>
+
+	<script src="js/libs/knockout.js"></script>
+	<script src="js/libs/oauth-signature.min.js"></script>
+	<script src="js/app.js"></script>
+    <script>
+        $("#menu-toggle").click(function(e){
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+	<script async defer
+    src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBxL8qkUOMhWz7ajinm7xXhSjFCvX5zc2E&callback=initMap" onerror="mapError()">
+    </script>
+</body>
+</html>
